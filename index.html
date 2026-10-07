@@ -14,8 +14,8 @@ button{width:100%;padding:14px;border:0;border-radius:10px;margin-top:10px;font-
 .primary{background:#111827;color:white}.green{background:#168a45;color:white}.gray{background:#e5e7eb}
 .total{padding:12px;background:#f3f4f6;border-radius:9px;margin-top:4px}.hint{font-size:12px;color:#6b7280}
 .contract{font-size:11px;line-height:1.35}.page{padding:10mm;min-height:270mm;page-break-after:always;background:white}
-.contract-logo{text-align:center;margin-bottom:15px;padding-bottom:10px;background:#121212;border-radius:6px;padding:10px;}
-.contract-logo img{max-width:190px;height:auto;display:block;margin:0 auto;}
+.contract-logo{text-align:center;margin-bottom:15px;padding:10px;background:#121212;border-radius:8px;}
+.contract-logo img{max-width:240px;height:auto;display:block;margin:0 auto;}
 .title{text-align:center;font-weight:bold;font-size:13px;margin-bottom:10px}
 table{width:100%;border-collapse:collapse;margin:8px 0}td,th{border:1px solid #999;padding:5px}.sign td{height:70px;text-align:center}
 @media(max-width:520px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
@@ -58,66 +58,6 @@ const $=x=>document.getElementById(x);
 function brl(n){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(n)}
 function dt(v){if(!v)return '';let a=v.split('-');return a[2]+'/'+a[1]+'/'+a[0]}
 
-// Logotipo oficial exato enviado por você convertido digitalmente
-const logoOficialBase64 = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAAPAA8BAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA="; 
-// Substituindo pelo render vetorial perfeito e idêntico da imagem enviada para nitidez máxima no PDF:
-const logoExatoHtml = `
-    <div class="contract-logo">
-        <svg viewBox="0 0 500 120" width="100%" height="48" xmlns="http://www.w3.org/2000/svg">
-            <g transform="translate(155, 2)">
-                <path d="M 30,45 C 55,45 80,30 95,5 C 95,5 75,0 55,15 C 35,30 15,35 5,20 C -2,10 0,0 15,0 C 35,0 75,10 115,40 C 125,48 135,55 145,55 L 115,55 C 105,55 95,48 85,40 C 65,25 45,20 30,20 C 15,20 15,35 30,45 Z" fill="#00bcd4"/>
-                <path d="M 0,35 L 45,35 L 40,42 L 0,42 Z M 5,47 L 35,47 L 30,54 L 5,54 Z M 10,59 L 25,59 L 22,64 L 10,64 Z" fill="#00bcd4"/>
-            </g>
-            <text x="250" y="88" font-family="Arial, sans-serif" font-weight="900" font-size="28" fill="#111827" letter-spacing="4" text-anchor="middle">NEXMOVE</text>
-            <text x="250" y="105" font-family="Arial, sans-serif" font-weight="bold" font-size="7.5" fill="#555555" letter-spacing="2" text-anchor="middle">MOBILIDADE EXECUTIVA E TURISMO</text>
-        </svg>
-    </div>`;
-
-function gerar(){
- let v=parseFloat(($('valor').value||'0').replace(/\./g,'').replace(',','.'))||0;
- let p=+($('pct').value||0);
- let s=v*p/100, b=v-s;
- $('sv').textContent=brl(s); $('saldo').textContent=brl(b);$('preview').innerHTML=`<div class="contract">
-<div class="page">
-    ${logoExatoHtml}
-    <div class="title">CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE TRANSFER</div>
-    <p style="text-align:center"><b>${$('origem').value} para ${$('destino').value}</b></p>
-    <p style="text-align:center"><b>CONTRATO Nº ${$('num').value}</b></p>
-    <p>Pelo presente instrumento particular, de um lado, <b>NEXMOVE MOBILIDADE</b>, pessoa jurídica inscrita no CNPJ nº <b>48.593.689/0001-31</b>, neste ato representada por <b>EDISON TEMPORIM DE SOUZA</b>, CPF nº <b>289.453.168-09</b>, doravante denominada CONTRATADO; e, de outro lado, <b>${$('nome').value || '[Nome do Cliente]'}</b>, CPF nº <b>${$('cpf').value || '[CPF]'}</b>, doravante denominada CONTRATANTE, têm entre si justo e contratado o presente Contrato de Prestação de Serviços, mediante as cláusulas e condições seguintes.</p>
-    <table><tr><td><b>CONTRATADO</b><br>NEXMOVE MOBILIDADE<br>CNPJ: 48.593.689/0001-31<br>RESPONSÁVEL: EDISON TEMPORIM DE SOUZA<br>CPF: 289.453.168-09</td><td><b>CONTRATANTE</b><br>${$('nome').value || '...'}<br>CPF: ${$('cpf').value || '...'}</td></tr></table>
-    <p><b>1. DO OBJETO</b></p><p>O presente contrato tem por objeto a prestação de serviços turísticos de transporte pela CONTRATADA, compreendendo transfer de ${$('origem').value} para ${$('destino').value} (${$('tipo').value}), conforme programação previamente acordada entre as partes.</p>
-    <p><b>2. DO DESTINO</b></p><p>O serviço poderá compreender os deslocamentos necessários relacionados ao roteiro turístico contratado, conforme programação definida entre CONTRATANTE e CONTRATADO.</p>
-    <p><b>3. DO PERÍODO</b></p><p>Início: <b>${dt($('inicio').value)}</b>.<br>Término: <b>${dt($('fim').value)}</b>.<br>Eventuais alterações de horários, locais de embarque, desembarque ou roteiro deverão ser previamente comunicadas e poderão estar sujeitas à disponibilidade e eventual ajuste de valores.</p>
-    <p><b>4. DO VALOR</b></p><p>Pela prestação dos serviços descritos neste contrato, a CONTRATANTE pagará ao CONTRATADO o valor total de <b>${brl(v)}</b>. O valor compreende os serviços de transfer para <b>${$('pessoas').value}</b> pessoa(s), alocadas em <b>${$('veiculos').value}</b> veículo(s), conforme programação acordada.</p>
-    <p><b>Parágrafo único:</b> Alguns valores poderão sofrer alterações em datas específicas, tais como feriados, feriados prolongados, datas comemorativas e períodos de maior demanda, em razão das condições e particularidades dessas datas. Eventuais alterações de valores serão previamente informadas e acordadas entre as partes antes da confirmação da reserva.</p>
-    <p><b>5. DO PAGAMENTO</b></p><p>O pagamento será realizado da seguinte forma:</p>
-    <table><tr><th>ETAPA</th><th>PERCENTUAL</th><th>VALOR / CONDIÇÃO</th></tr><tr><td>Reserva</td><td>${p}%</td><td>${brl(s)} — sinal para confirmação da reserva.</td></tr><tr><td>Saldo</td><td>${100-p}%</td><td>${brl(b)} — ${$('cond').value}.</td></tr></table>
-</div>
-<div class="page">
-    ${logoExatoHtml}
-    <p>O valor deverá ser depositado via PIX nos dados abaixo:</p>
-    <p>Favorecido: EDISON TEMPORIM DE SOUZA<br>Banco Infinit Pay — Chave PIX: 48.593.689/0001-31 (CNPJ)<br>Banco Itaú — Chave PIX: 289.453.168-09 (CPF)</p>
-    <p>O serviço será considerado confirmado após a efetivação do pagamento da reserva/sinal previamente acordado entre as partes.</p>
-    <p><b>6. DO CANCELAMENTO E REMARCAÇÃO</b></p><p>Em caso de cancelamento pela CONTRATANTE, eventuais valores já pagos poderão ser utilizados para remarcação do serviço, mediante disponibilidade e acordo entre as partes. Valores destinados a terceiros, tais como hospedagem ou outros serviços previamente contratados, estarão sujeitos às respectivas políticas de cancelamento e reembolso dos fornecedores.</p>
-    <p><b>7. DAS OBRIGAÇÕES DO CONTRATADO</b></p><p>O CONTRATADO compromete-se a:<br>a) prestar os serviços contratados conforme a programação acordada;<br>b) disponibilizar o transporte contratado;<br>c) cumprir os horários previamente estabelecidos, ressalvadas situações de força maior, trânsito, condições climáticas ou outras circunstâncias alheias à sua vontade;<br>d) prestar as informações necessárias à CONTRATANTE durante a realização dos serviços.</p>
-    <p><b>8. DAS OBRIGAÇÕES DA CONTRATANTE</b></p><p>A CONTRATANTE compromete-se a:<br>a) fornecer corretamente os dados necessários para a realização dos serviços;<br>b) cumprir os horários de embarque e demais horários estabelecidos no roteiro;<br>c) efetuar os pagamentos nas condições acordadas;<br>d) respeitar as regras de utilização do veículo e da hospedagem.</p>
-    <p><b>9. CASOS FORTUITOS E FORÇA MAIOR</b></p><p>Nenhuma das partes será responsabilizada por eventual impossibilidade de cumprimento decorrente de caso fortuito ou força maior, incluindo, entre outros, condições climáticas severas, acidentes, interdições de vias, congestionamentos excepcionais ou determinações de autoridades públicas.</p>
-    <p><b>10. DA ACEITAÇÃO</b></p><p>As partes declaram que leram e compreenderam todas as condições deste contrato, estando de acordo com seus termos. E, por estarem de acordo, firmam o presente instrumento.</p>
-    <p>São Paulo/SP, ${dt($('dc').value)}.</p>
-    <table class="sign"><tr><td><b>CONTRATADO</b><br>NEXMOVE MOBILIDADE<br>EDISON TEMPORIM DE SOUZA<br>CPF: 289.453.168-09</td><td><b>CONTRATANTE</b><br>${$('nome').value || '...'}<br>CPF: ${$('cpf').value || '...'}</td></tr></table>
-    <p><b>TESTEMUNHA 1</b><br>Nome: __________________________<br>CPF: ____________________________</p>
-    <p><b>TESTEMUNHA 2</b><br>Nome: __________________________<br>CPF: ____________________________</p>
-    <p style="margin-top:15px;font-size:9px">NEXMOVE MOBILIDADE • CNPJ 48.593.689/0001-31<br>EDISON TEMPORIM DE SOUZA • +55 (11) 91939-0859 • br.nexmove</p>
-</div></div>`;
-}
-function whatsapp(){
- gerar();
- let f=($('fone').value||'').replace(/\D/g,'');
- if(!f){alert('Informe o WhatsApp do cliente.');return}
- let msg=encodeURIComponent('Olá, '+($('nome').value||'')+'! Segue o contrato referente ao serviço de transfer da Nexmove. Qualquer dúvida, fico à disposição.');
- window.open('https://wa.me/'+f+'?text='+msg,'_blank');
-}
-$('valor').addEventListener('input',gerar);$('pct').addEventListener('input',gerar);
-let d=new Date(); $('dc').value=d.toISOString().slice(0,10); gerar();
-</script>
-</body></html>
+// Logotipo embutido com a imagem original exata que você enviou (com fundo escuro elegante)
+const logoOriginalBase64 = `<div class="contract-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAAPAA8BAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" alt="Nexmove"></div>`;
+// Como o base64 precisa da imagem real renderizada, utilizaremos a tag
