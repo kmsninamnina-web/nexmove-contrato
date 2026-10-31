@@ -1,63 +1,47 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NEXMOVE - Contrato</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#f3f4f6;font-family:Arial;color:#111827}
-header{background:#111827;color:white;padding:18px;position:sticky;top:0;z-index:2}
-main{max-width:700px;margin:auto;padding:14px}.card{background:white;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #0001}
-h1{font-size:20px;margin:0}h2{font-size:16px;margin:0 0 14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:bold;margin-bottom:5px;color:#4b5563}
-input,select{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:9px;font-size:16px;background:white}
-button{width:100%;padding:14px;border:0;border-radius:10px;margin-top:10px;font-weight:bold;font-size:16px}
-.primary{background:#111827;color:white}.green{background:#168a45;color:white}.gray{background:#e5e7eb}
-.total{padding:12px;background:#f3f4f6;border-radius:9px;margin-top:4px}.hint{font-size:12px;color:#6b7280}
-.contract{font-size:11px;line-height:1.35}.page{padding:10mm;min-height:270mm;page-break-after:always;background:white}
-.contract-logo{text-align:center;margin-bottom:15px;padding:10px;background:#121212;border-radius:8px;}
-.contract-logo img{max-width:240px;height:auto;display:block;margin:0 auto;}
-.title{text-align:center;font-weight:bold;font-size:13px;margin-bottom:10px}
-table{width:100%;border-collapse:collapse;margin:8px 0}td,th{border:1px solid #999;padding:5px}.sign td{height:70px;text-align:center}
-@media(max-width:520px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
-@media print{header,.form,.actions{display:none!important}body{background:white}.card{box-shadow:none;margin:0;padding:0}}
-</style></head>
-<body>
-<header><h1>🚐 NEXMOVE — Emitir contrato</h1><div style="font-size:12px;margin-top:4px">Preencha, gere e envie ao cliente.</div></header>
-<main>
-<section class="card form">
-<h2>Dados do contrato</h2>
-<div class="grid">
-<div><label>Nº do contrato</label><input id="num" value="1010/2026"></div>
-<div><label>Data do contrato</label><input id="dc" type="date"></div>
-<div class="full"><label>Nome do cliente</label><input id="nome" value="Luciana Souto Onorio Lazzari"></div>
-<div><label>CPF do cliente</label><input id="cpf" value="818.316.921-04"></div>
-<div><label>WhatsApp</label><input id="fone" placeholder="5511999999999"></div>
-<div><label>Origem</label><input id="origem" value="São Paulo/SP"></div>
-<div><label>Destino</label><input id="destino" value="Sorocaba/SP"></div>
-<div><label>Tipo de serviço</label><select id="tipo"><option>IDA E VOLTA</option><option>IDA</option><option>VOLTA</option><option>TRANSFER</option></select></div>
-<div><label>Data início</label><input id="inicio" type="date"></div>
-<div><label>Data término</label><input id="fim" type="date"></div>
-<div><label>Passageiros</label><input id="pessoas" type="number" value="1"></div>
-<div><label>Veículos</label><input id="veiculos" type="number" value="1"></div>
-<div><label>Valor total (R$)</label><input id="valor" value="900,00"></div>
-<div><label>Sinal (%)</label><input id="pct" type="number" value="30"></div>
-<div class="full"><label>Condição do saldo</label><input id="cond" value="pagamento na data do embarque"></div>
-</div>
-<div class="total">Sinal: <b id="sv">R$ 270,00</b> &nbsp; | &nbsp; Saldo: <b id="saldo">R$ 630,00</b></div>
-<div class="hint">Preencha os dados e clique para atualizar ou salvar como PDF.</div>
-<div class="actions">
-<button class="primary" onclick="gerar()">ATUALIZAR VISUALIZAÇÃO</button>
-<button class="gray" onclick="window.print()">SALVAR COMO PDF / IMPRIMIR</button>
-<button class="green" onclick="whatsapp()">🟢 ENVIAR PELO WHATSAPP</button>
-</div>
-</section>
-<section class="card"><div id="preview"></div></section>
-</main>
-<script>
-const $=x=>document.getElementById(x);
-function brl(n){return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(n)}
-function dt(v){if(!v)return '';let a=v.split('-');return a[2]+'/'+a[1]+'/'+a[0]}
-
-// Logotipo embutido com a imagem original exata que você enviou (com fundo escuro elegante)
-const logoOriginalBase64 = `<div class="contract-logo"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAAPAA8BAREA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=" alt="Nexmove"></div>`;
-// Como o base64 precisa da imagem real renderizada, utilizaremos a tag
+        c) efetuar os pagamentos nas condições acordadas;<br>
+        d) respeitar as regras de utilização do veículo e da hospedagem.</p>
+        <p><b>9. CASOS FORTUITOS E FORÇA MAIOR</b></p>
+        <p>Nenhuma das partes será responsabilizada por eventual impossibilidade de cumprimento decorrente de caso fortuito ou força maior, incluindo, entre outros, condições climáticas severas, acidentes, interdições de vias, congestionamentos excepcionais ou determinações de autoridades públicas.</p>
+        <p><b>10. DA ACEITAÇÃO</b></p>
+        <p>As partes declaram que leram e compreenderam todas as condições deste contrato, estando de acordo com seus termos. E, por estarem de acordo, firmam o presente instrumento.</p>
+        <p>São Paulo/SP, ${dataContratoVal}.</p>
+        <table class="sign">
+          <tr>
+            <td><b>CONTRATADO</b><br>NEXMOVE MOBILIDADE<br>EDISON TEMPORIM DE SOUZA<br>CPF: 289.453.168-09</td>
+            <td><b>CONTRATANTE</b><br>${nomeVal}<br>CPF: ${cpfVal}</td>
+          </tr>
+        </table>
+        <p><b>TESTEMUNHA 1</b><br>Nome: __________________________<br>CPF: ____________________________</p>
+        <p><b>TESTEMUNHA 2</b><br>Nome: __________________________<br>CPF: ____________________________</p>
+        <p style="margin-top:15px;font-size:9px">NEXMOVE MOBILIDADE • CNPJ 48.593.689/0001-31<br>EDISON TEMPORIM DE SOUZA • +55 (11) 91939-0859 • br.nexmove</p>
+      </div>
+    </div>`;
+}
+function imprimir() {
+  gerar();
+  window.print();
+}
+function whatsapp() {
+  gerar();
+  let f = ($('fone').value || '').replace(/\D/g, '');
+  if (!f) {
+    alert('Informe o WhatsApp do cliente.');
+    return;
+  }
+  let msg = encodeURIComponent('Olá, ' + ($('nome').value || '') + '! Segue o contrato referente ao serviço de transfer da Nexmove. Qualquer dúvida, fico à disposição.');
+  window.open('https://wa.me/' + f + '?text=' + msg, '_blank');
+}
+// Atualizar automaticamente ao alterar qualquer campo
+document.querySelectorAll('.form input, .form select').forEach(el => {
+  el.addEventListener('input', gerar);
+  el.addEventListener('change', gerar);
+});
+// Inicialização com a data de hoje
+let hoje = new Date().toISOString().slice(0, 10);
+if (!$('dc').value) $('dc').value = hoje;
+if (!$('inicio').value) $('inicio').value = hoje;
+if (!$('fim').value) $('fim').value = hoje;
+gerar();
+</script>
+</body>
+</html>
